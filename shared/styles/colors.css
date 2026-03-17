@@ -1,0 +1,96 @@
+:root {
+  /* Neutral Color Palette */
+  --color-neutral-25: #fcfcfc;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712;
+
+  /* Primary Brand - Indigo/Violet base */
+  --color-primary-25: #fcfaff;
+  --color-primary-50: #eff0ff;
+  --color-primary-100: #e0e2ff;
+  --color-primary-200: #c5c6fd;
+  --color-primary-300: #a4a4fa;
+  --color-primary-400: #7f7df4;
+  --color-primary-500: #635bff;
+  /* Main Brand Color */
+  --color-primary-600: #4f3ee1;
+  --color-primary-700: #4230c2;
+  --color-primary-800: #372a9e;
+  --color-primary-900: #30287e;
+  --color-primary-950: #1e184b;
+
+  /* Secondary - Teal/Cyan */
+  --color-secondary-50: #f0fdfa;
+  --color-secondary-100: #ccfbf1;
+  --color-secondary-200: #99f6e4;
+  --color-secondary-300: #5eead4;
+  --color-secondary-400: #2dd4bf;
+  --color-secondary-500: #14b8a6;
+  --color-secondary-600: #0d9488;
+  --color-secondary-700: #0f766e;
+  --color-secondary-800: #115e59;
+  --color-secondary-900: #134e4a;
+  --color-secondary-950: #042f2e;
+
+  /* Semantic - Success (Green) */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+
+  /* Semantic - Warning (Amber) */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+
+  /* Semantic - Error (Red) */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+
+  /* Semantic - Info (Blue) */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-200: #bfdbfe;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+
+  /* Adventure Brand Palette */
+  --color-sun-50: #fff9eb;
+  --color-sun-100: #ffefc2;
+  --color-sun-500: #ffc20a; /* Primary CTA Yellow */
+  --color-sun-600: #e6af09;
+  
+  --color-navy-50: #f0f2f5;
+  --color-navy-600: #1a2b4b;
+  --color-navy-700: #121e35; /* Secondary Navy */
+  --color-navy-800: #0b1220;
+  
+  --color-ocean-50: #f0f9ff;
+  --color-ocean-500: #0ea5e9;
+  --color-ocean-600: #0284c7; /* Tertiary Blue */
+  --color-ocean-700: #0369a1;
+
+  /* Base */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+}
