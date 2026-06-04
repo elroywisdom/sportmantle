@@ -1,8 +1,8 @@
 :root {
   /* Font Families */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-lato), system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-aloevera), system-ui, -apple-system, sans-serif;
 
   /* Font Sizes */
   --text-xs: 0.75rem;

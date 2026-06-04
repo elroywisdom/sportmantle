@@ -19,10 +19,10 @@ export function ButtonsShowcase() {
                 <div className="flex flex-wrap items-center gap-4">
                     <Button variant="primary">Book Now</Button>
                     <Button variant="secondary">Search Flights</Button>
-                    <Button variant="tertiary">View Details</Button>
+                    <Button variant="outline">View Details</Button>
                 </div>
                 <Text variant="xs" intent="muted" className="mt-4 block">
-                    Yellow for primary CTA, Navy for secondary actions, Ocean Blue for tertiary
+                    Vibrant red for primary actions, dark grit-gray for secondary actions, and outline for secondary actions
                 </Text>
             </div>
 
@@ -33,9 +33,8 @@ export function ButtonsShowcase() {
                 </Text>
                 <div className="flex flex-wrap items-center gap-4">
                     <Button size="sm">Small</Button>
-                    <Button size="md">Medium</Button>
+                    <Button size="default">Medium (Default)</Button>
                     <Button size="lg">Large</Button>
-                    <Button size="xl">Extra Large</Button>
                 </div>
             </div>
 
@@ -45,10 +44,9 @@ export function ButtonsShowcase() {
                     Outline & Ghost Variants
                 </Text>
                 <div className="flex flex-wrap items-center gap-4">
-                    <Button variant="outline-navy">Outline Navy</Button>
-                    <Button variant="outline-blue">Outline Blue</Button>
+                    <Button variant="outline">Outline</Button>
                     <Button variant="ghost">Ghost Button</Button>
-                    <Button variant="link" href="#">Link Variant</Button>
+                    <Button variant="link">Link Variant</Button>
                 </div>
             </div>
 
@@ -59,10 +57,9 @@ export function ButtonsShowcase() {
                 </Text>
                 <div className="flex flex-wrap items-center gap-4">
                     <Button>Default</Button>
-                    <Button className="bg-[var(--color-action-primary-hover)]">Hover State</Button>
-                    <Button className="ring-2 ring-[var(--color-action-primary)] ring-offset-2">Focus State</Button>
+                    <Button className="opacity-90">Hover State</Button>
+                    <Button className="ring-2 ring-primary ring-offset-2">Focus State</Button>
                     <Button disabled>Disabled</Button>
-                    <Button isLoading>Loading</Button>
                 </div>
             </div>
 
@@ -72,15 +69,19 @@ export function ButtonsShowcase() {
                     Icon Buttons & Layouts
                 </Text>
                 <div className="flex flex-wrap items-center gap-6">
-                    <Button leftIcon={<Plane className="w-5 h-5" />}>
-                        Book Flight
+                    <Button>
+                        <Plane className="w-5 h-5 mr-2" /> Book Flight
                     </Button>
-                    <Button variant="secondary" rightIcon={<ChevronRight className="w-5 h-5" />}>
-                        Continue
+                    <Button variant="secondary">
+                        Continue <ChevronRight className="w-5 h-5 ml-2" />
                     </Button>
                     <div className="flex items-center gap-3">
-                        <Button variant="secondary" size="md" icon={<Search className="w-5 h-5" />} rounded />
-                        <Button variant="ghost" size="sm" icon={<Bell className="w-5 h-5" />} className="border border-[var(--color-border-default)]" />
+                        <Button variant="secondary" size="icon" aria-label="Search">
+                            <Search className="w-5 h-5" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="border border-gray-200" aria-label="Alerts">
+                            <Bell className="w-5 h-5" />
+                        </Button>
                     </div>
                 </div>
             </div>
