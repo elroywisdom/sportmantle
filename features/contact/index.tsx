@@ -357,7 +357,7 @@ function ContactForm() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="e.g. Samuel Adebayo"
-                    autocomplete="name"
+                    autoComplete="name"
                     required
                     className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                       touched.name && errors.name
@@ -385,7 +385,7 @@ function ContactForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="e.g. samuel@example.com"
-                      autocomplete="email"
+                      autoComplete="email"
                       required
                       className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                         touched.email && errors.email
@@ -411,7 +411,7 @@ function ContactForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="e.g. +234 80 1234 5678"
-                      autocomplete="tel"
+                      autoComplete="tel"
                       required
                       className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                         touched.phone && errors.phone
