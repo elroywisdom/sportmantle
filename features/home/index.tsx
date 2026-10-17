@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import AboutPreview from "./components/AboutPreview";
+import CoreExpressions from "./components/CoreExpressions";
 import MissionPillars from "./components/MissionPillars";
 import ImpactStats from "./components/ImpactStats";
 import Timeline from "./components/Timeline";
@@ -12,7 +12,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-black">
       <div className="relative">
         <Hero />
-        <AboutPreview />
+        <CoreExpressions />
         <MissionPillars />
         <ImpactStats />
         <LatestProjects />

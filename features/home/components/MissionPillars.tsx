@@ -21,42 +21,47 @@ const pillars = [
   {
     number: "01",
     title: "Gospel Discipleship",
+    subtitle: "Rooted in Grace",
     description: "Discipling athletes in the gospel of Jesus Christ, establishing an unshakeable spiritual foundation anchored in grace.",
     icon: Flame,
-    className: "lg:col-span-7 bg-[#0a0a0a]",
-    accent: "from-red-500/10 to-transparent"
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-37.jpg",
+    className: "lg:col-span-7",
   },
   {
     number: "02",
     title: "Divine Identity",
+    subtitle: "Called for Purpose",
     description: "Equipping athletes with the precise knowledge of God, helping them discover their identity, call, and purpose on earth.",
     icon: Fingerprint,
-    className: "lg:col-span-5 bg-[#0e0e0e]",
-    accent: "from-amber-500/10 to-transparent"
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-32.jpg",
+    className: "lg:col-span-5",
   },
   {
     number: "03",
     title: "Scriptural Teachings",
+    subtitle: "Spiritual Alignment",
     description: "Establishing righteousness in the hearts of men through deep scriptural teachings, spiritual alignment, and ethical growth.",
     icon: BookOpen,
-    className: "lg:col-span-4 bg-[#0e0e0e]",
-    accent: "from-blue-500/10 to-transparent"
+    image: "/Images/motion-images/founder-teaching.webp",
+    className: "lg:col-span-4",
   },
   {
     number: "04",
     title: "Stellar Training",
+    subtitle: "Athletic Excellence",
     description: "Building a stellar educational and physical training system for global transformation, mentorship, and excellence in sports.",
     icon: GraduationCap,
-    className: "lg:col-span-4 bg-[#0a0a0a]",
-    accent: "from-emerald-500/10 to-transparent"
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-61.jpg",
+    className: "lg:col-span-4",
   },
   {
     number: "05",
     title: "Supernatural Freedom",
+    subtitle: "Power of Deliverance",
     description: "Setting athletes free from addictions, emotional bondage, and spiritual holds through the power of deliverance.",
     icon: Sparkles,
-    className: "lg:col-span-4 bg-[#0e0e0e]",
-    accent: "from-purple-500/10 to-transparent"
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-97.jpg",
+    className: "lg:col-span-4",
   }
 ];
 
@@ -67,7 +72,6 @@ export default function MissionPillars() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fade in the header using fromTo for absolute React 18 Strict Mode safety
       if (headerRef.current) {
         gsap.fromTo(headerRef.current, 
           { y: 40, opacity: 0 },
@@ -84,11 +88,8 @@ export default function MissionPillars() {
         );
       }
 
-      // Filter out any null refs just in case
       const validCards = cardsRef.current.filter(Boolean);
-      
       if (validCards.length > 0) {
-        // Staggered entry for the bento grid cards using fromTo
         gsap.fromTo(validCards, 
           { y: 50, opacity: 0 },
           {
@@ -99,7 +100,7 @@ export default function MissionPillars() {
             ease: "power3.out",
             scrollTrigger: {
               trigger: containerRef.current,
-              start: "top 65%",
+              start: "top 70%",
             }
           }
         );
@@ -114,7 +115,7 @@ export default function MissionPillars() {
       ref={containerRef}
       className="relative py-28 px-6 bg-black text-pure-white overflow-hidden border-t border-white/5"
     >
-      {/* Decorative Glows */}
+      {/* Decorative Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
         <div className="absolute top-[20%] left-[80%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-[20%] right-[80%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]" />
@@ -136,44 +137,56 @@ export default function MissionPillars() {
               <span className="text-[#E30A0A] italic font-serif">Discipleship</span>
             </h2>
           </div>
-          <p className="text-gray-400 max-w-sm text-sm sm:text-base leading-relaxed">
-            The five spiritual and physical pillars through which we mentor, empower, and equip young athletes to lead with righteousness and justice.
+          <p className="text-gray-400 max-w-md text-sm sm:text-base leading-relaxed">
+            Our five-fold blueprint for empowering and equipping athletes on and off the court through gospel mentorship and physical discipline.
           </p>
         </div>
 
-        {/* Bento Grid */}
+        {/* Image-Driven Bento Grid */}
         <div className="pillar-grid grid grid-cols-1 lg:grid-cols-12 gap-6">
           {pillars.map((pillar, i) => (
             <div
               key={pillar.number}
               ref={(el) => { cardsRef.current[i] = el; }}
-              className={`pillar-card relative p-8 md:p-10 border border-white/5 rounded-2xl overflow-hidden group hover:border-[#E30A0A]/40 hover:-translate-y-2 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between min-h-[300px] sm:min-h-[320px] ${pillar.className}`}
+              className={`pillar-card relative rounded-2xl overflow-hidden group border border-white/10 hover:border-[#E30A0A]/50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between min-h-[380px] sm:min-h-[420px] shadow-[0_20px_40px_rgba(0,0,0,0.6)] ${pillar.className}`}
             >
-              {/* Subtle ambient accent background glow on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${pillar.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+              {/* Background Photography with Zoom Effect */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                style={{ backgroundImage: `url(${encodeURI(pillar.image)})` }}
+              />
 
-              {/* Card Top */}
-              <div className="flex justify-between items-start relative z-10">
-                <div className="size-14 bg-white/5 border border-white/5 flex items-center justify-center text-white group-hover:!bg-[#E30A0A] group-hover:border-transparent group-hover:text-white transition-all duration-500 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
-                  <pillar.icon className="size-6 transition-transform duration-500 group-hover:scale-110" />
+              {/* Rich Multi-stop Cinematic Overlay for Maximum Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30 group-hover:via-black/60 transition-colors duration-700" />
+
+              {/* Subtle Red Brand Sheen on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#E30A0A]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+              {/* Card Top: Pillar Tag & Number */}
+              <div className="flex justify-between items-start relative z-10 p-7 sm:p-8">
+                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white group-hover:border-[#E30A0A]/40 transition-colors">
+                  <pillar.icon className="size-4 text-[#E30A0A]" />
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-white/90">
+                    {pillar.subtitle}
+                  </span>
                 </div>
-                <span className="text-4xl md:text-5xl font-black text-white/[0.04] group-hover:text-[#E30A0A]/10 transition-colors duration-500 font-display select-none">
+                <span className="text-4xl sm:text-5xl font-black text-white/20 group-hover:text-[#E30A0A]/40 transition-colors duration-500 font-display select-none">
                   {pillar.number}
                 </span>
               </div>
 
-              {/* Card Bottom */}
-              <div className="space-y-3 relative z-10 pt-8">
-                <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white group-hover:text-white transition-colors">
+              {/* Card Bottom: Typography Content */}
+              <div className="relative z-10 p-7 sm:p-8 space-y-2.5 mt-auto">
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-white transition-colors">
                   {pillar.title}
                 </h3>
-                <p className="text-gray-400 group-hover:text-gray-300 transition-colors text-[14px] sm:text-base leading-relaxed font-medium max-w-xl">
+                <p className="text-gray-300 group-hover:text-white/90 transition-colors text-sm sm:text-base leading-relaxed font-normal max-w-md">
                   {pillar.description}
                 </p>
               </div>
 
               {/* Bottom Glowing Accent Line */}
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#E30A0A]/0 to-transparent group-hover:via-[#E30A0A]/60 transition-all duration-700" />
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#E30A0A]/0 to-transparent group-hover:via-[#E30A0A] transition-all duration-700 z-10" />
             </div>
           ))}
         </div>

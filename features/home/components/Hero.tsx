@@ -5,27 +5,30 @@ import Link from "next/link";
 import { Button } from "@/shared/components/ui/button";
 import gsap from "gsap";
 
-const images = [
-  "/Images/motion-images/close-image-of-founder-with-players.webp",
-  "/Images/motion-images/athlete-praying.webp",
-  "/Images/motion-images/founder-teaching.webp",
-  "/Images/motion-images/team-members.webp",
-  "/Images/motion-images/sportmantle-competition.webp",
-  "/Images/motion-images/founder-addresing-players.webp",
-  "/Images/motion-images/founder-awarding-playrt.webp",
-  "/Images/motion-images/founder-hugging-athlete.webp",
-  "/Images/motion-images/founder-praying-for-a-player.webp",
-  "/Images/motion-images/founder-speaking-to-children.webp",
-  "/Images/motion-images/founder-speaking-to-young-players.webp",
-  "/Images/motion-images/founder-with-ballers.webp",
-  "/Images/motion-images/founder-with-club.webp",
-  "/Images/motion-images/founder-with-players.webp",
-  "/Images/motion-images/founders-possing-for-picture.webp",
-  "/Images/motion-images/happy-children.webp",
-  "/Images/motion-images/inhouse-prayer.webp",
-  "/Images/motion-images/player-leading-prayer.webp",
-  "/Images/motion-images/player-praying.webp"
+const rawImages = [
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-104.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-29.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-32.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-35.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-44.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-53.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-61.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-71.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-72.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-89.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-97.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-99.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-101.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-105.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-24.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-36.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-43.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-black-pictures/SMC-18.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-black-pictures/SMC-20.jpg",
+  "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-day-2/OGB-100.jpg"
 ];
+
+const images = rawImages.map(img => encodeURI(img));
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
