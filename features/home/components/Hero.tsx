@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/shared/components/ui/button";
 import gsap from "gsap";
 
@@ -104,11 +105,16 @@ export default function Hero() {
               key={i}
               className="relative w-[calc((100vw-32px)/2)] sm:w-[calc((100vw-80px)/3)] lg:w-[calc((100vw-120px)/4)] aspect-[3/4] rounded-2xl overflow-hidden group flex-shrink-0 border border-white/5 shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03] hover:border-primary/30 active:scale-[0.98] active:grayscale-0 active:brightness-[102%] cursor-pointer grayscale-[25%] brightness-[85%] hover:grayscale-0 hover:brightness-[102%]"
             >
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundImage: `url(${imgUrl})` }}
+              <Image
+                src={imgUrl}
+                alt="Sportmantle Outreach Milestone"
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                priority={i < 4}
+                loading={i < 4 ? "eager" : "lazy"}
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" />
             </div>
           ))}
         </div>

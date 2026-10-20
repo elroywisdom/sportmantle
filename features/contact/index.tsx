@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   User, 
   Building2, 
@@ -13,11 +14,10 @@ import {
   CheckCircle2, 
   ArrowRight, 
   Loader2,
-  Calendar,
   Sparkles,
-  Trophy,
   Instagram,
-  Podcast
+  Podcast,
+  Clock
 } from "lucide-react";
 import Footer from "@/features/home/components/Footer";
 import { CONTACT_INFO } from "@/shared/utils/constants";
@@ -65,7 +65,6 @@ function ContactForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     
-    // Clear errors when active typing starts
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -78,7 +77,6 @@ function ContactForm() {
     validateField(name, value);
   };
 
-  // Validate individual field
   const validateField = (name: string, value: string) => {
     let errorMsg = "";
     
@@ -104,11 +102,9 @@ function ContactForm() {
     setErrors((prev) => ({ ...prev, [name]: errorMsg }));
   };
 
-  // Submit Handler
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate all active fields before submit
     const newErrors: Record<string, string> = {};
     const fieldsToValidate = ["name", "email", "phone", "message"];
     if (category === "athlete") {
@@ -122,7 +118,6 @@ function ContactForm() {
       }
     });
 
-    // Check specific validation formats
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
@@ -138,11 +133,9 @@ function ContactForm() {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      // Touch all validation fields to trigger visual error states
       const touchedAll = fieldsToValidate.reduce((acc, field) => ({ ...acc, [field]: true }), {});
       setTouched(touchedAll);
       
-      // Auto-focus the first invalid element
       const firstInvalidField = Object.keys(newErrors)[0];
       const el = document.getElementsByName(firstInvalidField)[0];
       if (el) el.focus();
@@ -151,7 +144,6 @@ function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate Server API Call (1.2s delay for premium user feedback)
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -160,139 +152,152 @@ function ContactForm() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-black text-white relative pt-32 pb-24 overflow-hidden select-none">
-      {/* Background Glow Accents */}
-      <div className="absolute inset-0 pointer-events-none opacity-40 z-0">
-        <div className="absolute -top-[20%] -right-[10%] w-[80vw] h-[80vw] bg-[#E30A0A]/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-[20%] -left-[10%] w-[70vw] h-[70vw] bg-[#E30A0A]/5 rounded-full blur-[150px]" />
-      </div>
+    <div className="w-full min-h-screen bg-[#0A0A0A] text-white relative pt-28 md:pt-36 pb-24 overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-1/4 -left-48 size-[500px] bg-[#B22222]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-48 size-[500px] bg-[#B22222]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-12">
         {/* Header Section */}
-        <div className="text-center md:text-left space-y-4 mb-16">
+        <div className="space-y-4">
           <Link 
             href="/" 
-            className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm font-medium transition-colors mb-4 group"
+            className="inline-flex items-center gap-2 text-white/50 hover:text-white text-xs font-mono uppercase tracking-wider transition-colors group"
           >
             <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to home
           </Link>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter font-display scale-y-[1.05] leading-none">
-            Pick Up Your <span className="text-[#E30A0A] italic">Mantle</span>
-          </h1>
-          <p className="text-white/60 text-lg md:text-xl font-light max-w-2xl leading-relaxed">
-            Choose your connection category and fill out the details below. Our team in Abuja will reach out to you directly.
-          </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tighter font-display leading-none">
+                Pick Up Your <span className="text-[#B22222] italic">Mantle</span>
+              </h1>
+              <p className="text-white/60 text-base sm:text-lg mt-3 max-w-xl font-light">
+                Connect with our team in Abuja for discipleship, ministry partnership, or youth outreaches.
+              </p>
+            </div>
+            
+            {/* Quick response pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-white/70 self-start md:self-auto">
+              <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Responses within 24 Hours</span>
+            </div>
+          </div>
         </div>
 
         {/* Main Grid Content */}
         {!isSubmitted ? (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             
-            {/* Left Column: Branded Content & Contact Info */}
-            <div className="lg:col-span-5 space-y-10">
+            {/* Left Column: Visual Photography Card & Direct Channels */}
+            <div className="lg:col-span-5 space-y-8">
               
-              {/* Category Info Cards */}
-              <div className="bg-white/[0.01] border border-white/5 p-8 rounded-xl backdrop-blur-xl space-y-6">
-                <h3 className="text-xl font-bold font-display uppercase tracking-tight text-[#E30A0A] flex items-center gap-2">
-                  <Sparkles className="size-5" /> The Mandate
-                </h3>
-                <blockquote className="border-l-2 border-[#E30A0A] pl-4 italic text-white/80 font-light text-base md:text-lg leading-relaxed">
-                  "Raise me a people in the sports industry, who will uphold righteousness and justice, through the route of discipleship."
-                </blockquote>
+              {/* Visual Anchor: Cinematic Ministry Photo Card */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group bg-neutral-950">
+                <Image
+                  src="/Images/projects/website-placeholder images-section/founder-hugging-athlete.jpg"
+                  alt="Sportmantle Discipleship Fellowship"
+                  fill
+                  priority
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-95"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Abuja Reach Details */}
-              <div className="space-y-6">
-                <h4 className="text-lg font-black uppercase tracking-wider text-white/90">Contact Details</h4>
-                <div className="space-y-5">
-                  <div className="flex items-center gap-4 text-white/70">
-                    <div className="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-white">
-                      <Mail className="size-5" />
+              {/* Direct Contact Channels */}
+              <div className="space-y-3.5">
+                <h4 className="text-xs font-mono uppercase tracking-widest text-white/40 font-bold">
+                  Direct Channels
+                </h4>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                  {/* Email */}
+                  <a 
+                    href={`mailto:${CONTACT_INFO.EMAIL}`}
+                    className="p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#B22222]/50 hover:bg-white/[0.04] transition-all flex items-center gap-3.5 group"
+                  >
+                    <div className="size-10 rounded-lg bg-[#B22222]/10 border border-[#B22222]/20 flex items-center justify-center text-[#B22222] group-hover:bg-[#B22222] group-hover:text-white transition-all shrink-0">
+                      <Mail className="size-4" />
                     </div>
-                    <div>
-                      <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Email Us</p>
-                      <a href={`mailto:${CONTACT_INFO.EMAIL}`} className="hover:text-[#E30A0A] font-medium transition-colors">
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-mono text-white/40 uppercase">Email Directly</div>
+                      <div className="text-sm font-semibold text-white/90 truncate group-hover:text-[#B22222] transition-colors">
                         {CONTACT_INFO.EMAIL}
-                      </a>
+                      </div>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4 text-white/70">
-                    <div className="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-white">
-                      <Phone className="size-5" />
+                  {/* Phone / WhatsApp */}
+                  <a 
+                    href={`tel:${CONTACT_INFO.PHONE_TEL || CONTACT_INFO.PHONE.replace(/\s+/g, '')}`}
+                    className="p-4 rounded-xl bg-white/[0.02] border border-white/10 hover:border-[#B22222]/50 hover:bg-white/[0.04] transition-all flex items-center gap-3.5 group"
+                  >
+                    <div className="size-10 rounded-lg bg-[#B22222]/10 border border-[#B22222]/20 flex items-center justify-center text-[#B22222] group-hover:bg-[#B22222] group-hover:text-white transition-all shrink-0">
+                      <Phone className="size-4" />
                     </div>
-                    <div>
-                      <p className="text-xs text-white/40 uppercase tracking-widest font-bold">Call / WhatsApp</p>
-                      <a href={`tel:${CONTACT_INFO.PHONE.replace(/\s+/g, '')}`} className="hover:text-[#E30A0A] font-medium transition-colors">
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-mono text-white/40 uppercase">Call / WhatsApp</div>
+                      <div className="text-sm font-semibold text-white/90 truncate group-hover:text-[#B22222] transition-colors">
                         {CONTACT_INFO.PHONE}
-                      </a>
+                      </div>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4 text-white/70">
-                    <div className="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-white">
-                      <MapPin className="size-5" />
+                  {/* HQ Location */}
+                  <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-center gap-3.5 sm:col-span-2 lg:col-span-1">
+                    <div className="size-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70 shrink-0">
+                      <MapPin className="size-4" />
                     </div>
                     <div>
-                      <p className="text-xs text-white/40 uppercase tracking-widest font-bold">HQ Location</p>
-                      <p className="font-medium text-white/90">{CONTACT_INFO.ADDRESS}</p>
+                      <div className="text-[10px] font-mono text-white/40 uppercase">Headquarters</div>
+                      <div className="text-sm font-semibold text-white/90">
+                        {CONTACT_INFO.ADDRESS}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Social Channels Row */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-black uppercase tracking-wider text-white/90">Active Socials</h4>
-                <div className="flex gap-4">
-                  <a 
-                    href={CONTACT_INFO.SOCIALS.INSTAGRAM} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#E30A0A] hover:border-[#E30A0A] hover:text-white transition-all text-white/80 group"
-                    aria-label="Instagram"
-                  >
-                    <Instagram className="size-5 group-hover:scale-110 transition-transform" />
-                  </a>
-                  <a 
-                    href={CONTACT_INFO.SOCIALS.PODCAST} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="size-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#E30A0A] hover:border-[#E30A0A] hover:text-white transition-all text-white/80 group"
-                    aria-label="Apple Podcast"
-                  >
-                    <Podcast className="size-5 group-hover:scale-110 transition-transform" />
-                  </a>
-                </div>
+              {/* Social Channels */}
+              <div className="pt-2 flex items-center gap-3">
+                <span className="text-xs font-mono text-white/40 uppercase">Connect:</span>
+                <a 
+                  href={CONTACT_INFO.SOCIALS.INSTAGRAM} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#B22222] hover:bg-[#B22222] text-white/80 hover:text-white transition-all text-xs font-mono flex items-center gap-2 group"
+                >
+                  <Instagram className="size-3.5" />
+                  <span>Instagram</span>
+                </a>
+                <a 
+                  href={CONTACT_INFO.SOCIALS.PODCAST} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#B22222] hover:bg-[#B22222] text-white/80 hover:text-white transition-all text-xs font-mono flex items-center gap-2 group"
+                >
+                  <Podcast className="size-3.5" />
+                  <span>Apple Podcast</span>
+                </a>
               </div>
 
-              {/* Outreach Highlight */}
-              <div className="bg-gradient-to-br from-[#E30A0A]/10 via-transparent to-transparent border border-[#E30A0A]/20 p-8 rounded-xl space-y-4">
-                <div className="flex items-center gap-3 text-white">
-                  <Trophy className="size-6 text-[#E30A0A]" />
-                  <span className="font-bold text-sm uppercase tracking-wider">Discipleship & Outreach</span>
-                </div>
-                <p className="text-sm text-white/60 leading-relaxed font-light">
-                  Over the last 3+ years, Sportmantle has discipled 200+ boys aged 5 to 25. We sponsor tournaments, outreaches, and bootcamps (like the Kaduna outreach in partnership with Beta Boys Project) to transform the sports industry.
-                </p>
-              </div>
             </div>
 
-            {/* Right Column: Premium Interactive Form */}
-            <div className="lg:col-span-7 bg-white/[0.02] border border-white/10 p-8 md:p-10 rounded-2xl shadow-2xl backdrop-blur-xl relative">
+            {/* Right Column: Clean High-Conversion Form */}
+            <div className="lg:col-span-7 bg-neutral-900/40 border border-white/10 p-6 sm:p-10 rounded-2xl shadow-2xl backdrop-blur-xl relative">
               
-              {/* Category Segmented Tabs */}
-              <div className="space-y-3 mb-8">
-                <label className="text-xs text-white/40 uppercase tracking-widest font-black block">
-                  Select Your Connection Category
-                </label>
-                <div className="grid grid-cols-3 gap-2 bg-white/5 p-1.5 rounded-xl border border-white/5">
+              {/* Category Segmented Control */}
+              <div className="mb-8">
+                <div className="text-xs text-white/50 uppercase tracking-widest font-mono mb-3">
+                  I am reaching out as:
+                </div>
+                <div className="grid grid-cols-3 gap-2 bg-black/40 p-1.5 rounded-xl border border-white/10">
                   <button
                     type="button"
                     onClick={() => setCategory("athlete")}
-                    className={`py-3 px-2 text-xs md:text-sm font-black uppercase tracking-wider rounded-lg transition-all duration-300 flex flex-col md:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`py-3 px-3 text-xs md:text-sm font-black uppercase tracking-wider rounded-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                       category === "athlete"
-                        ? "bg-[#E30A0A] text-white shadow-[0_4px_15px_rgba(227,10,10,0.3)]"
+                        ? "bg-[#B22222] text-white shadow-[0_0_20px_rgba(178,34,34,0.5)]"
                         : "text-white/60 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -303,9 +308,9 @@ function ContactForm() {
                   <button
                     type="button"
                     onClick={() => setCategory("partner")}
-                    className={`py-3 px-2 text-xs md:text-sm font-black uppercase tracking-wider rounded-lg transition-all duration-300 flex flex-col md:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`py-3 px-3 text-xs md:text-sm font-black uppercase tracking-wider rounded-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                       category === "partner"
-                        ? "bg-[#E30A0A] text-white shadow-[0_4px_15px_rgba(227,10,10,0.3)]"
+                        ? "bg-[#B22222] text-white shadow-[0_0_20px_rgba(178,34,34,0.5)]"
                         : "text-white/60 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -316,9 +321,9 @@ function ContactForm() {
                   <button
                     type="button"
                     onClick={() => setCategory("outreach")}
-                    className={`py-3 px-2 text-xs md:text-sm font-black uppercase tracking-wider rounded-lg transition-all duration-300 flex flex-col md:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                    className={`py-3 px-3 text-xs md:text-sm font-black uppercase tracking-wider rounded-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                       category === "outreach"
-                        ? "bg-[#E30A0A] text-white shadow-[0_4px_15px_rgba(227,10,10,0.3)]"
+                        ? "bg-[#B22222] text-white shadow-[0_0_20px_rgba(178,34,34,0.5)]"
                         : "text-white/60 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -328,26 +333,13 @@ function ContactForm() {
                 </div>
               </div>
 
-              {/* Info Text about Selected Category */}
-              <div className="mb-8 p-4 bg-white/5 rounded-lg border-l-2 border-[#E30A0A] text-xs text-white/70 leading-relaxed font-light">
-                {category === "athlete" && (
-                  "discipleship form: Fill out this details to apply for discipleship programs, tournaments, mentorship, and resources to grow in God and sports."
-                )}
-                {category === "partner" && (
-                  "partnership form: Let us know how you or your organization would like to seed, volunteer, or partner with us in Abuja or other states."
-                )}
-                {category === "outreach" && (
-                  "outreach registration: Select which meeting or outreach you want to attend or serve. We will notify you with details and locations."
-                )}
-              </div>
-
               {/* Form Element */}
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 
-                {/* Name Field */}
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                    Full Name <span className="text-[#E30A0A]">*</span>
+                {/* Full Name */}
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                    Full Name <span className="text-[#B22222]">*</span>
                   </label>
                   <input
                     type="text"
@@ -359,23 +351,22 @@ function ContactForm() {
                     placeholder="e.g. Samuel Adebayo"
                     autoComplete="name"
                     required
-                    className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
+                    className={`w-full min-h-[50px] bg-black/40 border px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                       touched.name && errors.name
-                        ? "border-[#E30A0A] focus:ring-1 focus:ring-[#E30A0A]/50"
-                        : "border-white/10 focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                        ? "border-[#B22222] focus:ring-1 focus:ring-[#B22222]"
+                        : "border-white/10 focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                     }`}
                   />
                   {touched.name && errors.name && (
-                    <span className="text-xs text-[#E30A0A] font-medium" role="alert">{errors.name}</span>
+                    <span className="text-xs text-[#B22222] font-mono" role="alert">{errors.name}</span>
                   )}
                 </div>
 
                 {/* Email and Phone Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Email Field */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="email" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                      Email Address <span className="text-[#E30A0A]">*</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                      Email Address <span className="text-[#B22222]">*</span>
                     </label>
                     <input
                       type="email"
@@ -387,21 +378,20 @@ function ContactForm() {
                       placeholder="e.g. samuel@example.com"
                       autoComplete="email"
                       required
-                      className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
+                      className={`w-full min-h-[50px] bg-black/40 border px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                         touched.email && errors.email
-                          ? "border-[#E30A0A] focus:ring-1 focus:ring-[#E30A0A]/50"
-                          : "border-white/10 focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                          ? "border-[#B22222] focus:ring-1 focus:ring-[#B22222]"
+                          : "border-white/10 focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                       }`}
                     />
                     {touched.email && errors.email && (
-                      <span className="text-xs text-[#E30A0A] font-medium" role="alert">{errors.email}</span>
+                      <span className="text-xs text-[#B22222] font-mono" role="alert">{errors.email}</span>
                     )}
                   </div>
 
-                  {/* Phone Field */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="phone" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                      Phone Number <span className="text-[#E30A0A]">*</span>
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                      Phone Number <span className="text-[#B22222]">*</span>
                     </label>
                     <input
                       type="tel"
@@ -413,24 +403,24 @@ function ContactForm() {
                       placeholder="e.g. +234 80 1234 5678"
                       autoComplete="tel"
                       required
-                      className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
+                      className={`w-full min-h-[50px] bg-black/40 border px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                         touched.phone && errors.phone
-                          ? "border-[#E30A0A] focus:ring-1 focus:ring-[#E30A0A]/50"
-                          : "border-white/10 focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                          ? "border-[#B22222] focus:ring-1 focus:ring-[#B22222]"
+                          : "border-white/10 focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                       }`}
                     />
                     {touched.phone && errors.phone && (
-                      <span className="text-xs text-[#E30A0A] font-medium" role="alert">{errors.phone}</span>
+                      <span className="text-xs text-[#B22222] font-mono" role="alert">{errors.phone}</span>
                     )}
                   </div>
                 </div>
 
-                {/* Conditional Fields: Athlete (Discipleship) */}
+                {/* Conditional Fields: Athlete */}
                 {category === "athlete" && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/[0.01] border border-white/5 p-5 rounded-xl">
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="age" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                        Age <span className="text-[#E30A0A]">*</span>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
+                    <div className="space-y-2">
+                      <label htmlFor="age" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                        Age <span className="text-[#B22222]">*</span>
                       </label>
                       <input
                         type="number"
@@ -441,22 +431,22 @@ function ContactForm() {
                         onBlur={handleBlur}
                         min="5"
                         max="100"
-                        placeholder="e.g. 18"
+                        placeholder="e.g. 19"
                         required
-                        className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
+                        className={`w-full min-h-[50px] bg-black/40 border px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                           touched.age && errors.age
-                            ? "border-[#E30A0A] focus:ring-1 focus:ring-[#E30A0A]/50"
-                            : "border-white/10 focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                            ? "border-[#B22222] focus:ring-1 focus:ring-[#B22222]"
+                            : "border-white/10 focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                         }`}
                       />
                       {touched.age && errors.age && (
-                        <span className="text-xs text-[#E30A0A] font-medium" role="alert">{errors.age}</span>
+                        <span className="text-xs text-[#B22222] font-mono" role="alert">{errors.age}</span>
                       )}
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="sport" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                        Primary Sport <span className="text-[#E30A0A]">*</span>
+                    <div className="space-y-2">
+                      <label htmlFor="sport" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                        Primary Sport <span className="text-[#B22222]">*</span>
                       </label>
                       <input
                         type="text"
@@ -465,27 +455,27 @@ function ContactForm() {
                         value={formData.sport}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="e.g. Football, Basketball"
+                        placeholder="e.g. Football, Basketball, Track"
                         required
-                        className={`w-full min-h-[48px] bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
+                        className={`w-full min-h-[50px] bg-black/40 border px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none ${
                           touched.sport && errors.sport
-                            ? "border-[#E30A0A] focus:ring-1 focus:ring-[#E30A0A]/50"
-                            : "border-white/10 focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                            ? "border-[#B22222] focus:ring-1 focus:ring-[#B22222]"
+                            : "border-white/10 focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                         }`}
                       />
                       {touched.sport && errors.sport && (
-                        <span className="text-xs text-[#E30A0A] font-medium" role="alert">{errors.sport}</span>
+                        <span className="text-xs text-[#B22222] font-mono" role="alert">{errors.sport}</span>
                       )}
                     </div>
                   </div>
                 )}
 
-                {/* Conditional Fields: Partner (Seed) */}
+                {/* Conditional Fields: Partner */}
                 {category === "partner" && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white/[0.01] border border-white/5 p-5 rounded-xl">
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="organization" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                        Organization / Church <span className="text-white/30">(Optional)</span>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-1">
+                    <div className="space-y-2">
+                      <label htmlFor="organization" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                        Organization / Ministry <span className="text-white/30">(Optional)</span>
                       </label>
                       <input
                         type="text"
@@ -494,13 +484,13 @@ function ContactForm() {
                         value={formData.organization}
                         onChange={handleChange}
                         placeholder="e.g. Beta Boys Project"
-                        className="w-full min-h-[48px] bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                        className="w-full min-h-[50px] bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                       />
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <label htmlFor="partnershipType" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                        Partnership Type <span className="text-[#E30A0A]">*</span>
+                    <div className="space-y-2">
+                      <label htmlFor="partnershipType" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                        Partnership Type <span className="text-[#B22222]">*</span>
                       </label>
                       <div className="relative">
                         <select
@@ -508,12 +498,12 @@ function ContactForm() {
                           name="partnershipType"
                           value={formData.partnershipType}
                           onChange={handleChange}
-                          className="w-full min-h-[48px] bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white transition-all focus:outline-none focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50 appearance-none cursor-pointer"
+                          className="w-full min-h-[50px] bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-sm text-white transition-all focus:outline-none focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50 appearance-none cursor-pointer"
                         >
                           <option value="financial" className="bg-[#121212] text-white">Financial Partner (Seed)</option>
                           <option value="volunteer" className="bg-[#121212] text-white">Volunteer</option>
                           <option value="mentor" className="bg-[#121212] text-white">Mentor / Discipler</option>
-                          <option value="academy" className="bg-[#121212] text-white">Sports Academy / Ministry Partner</option>
+                          <option value="academy" className="bg-[#121212] text-white">Sports Academy Partner</option>
                           <option value="other" className="bg-[#121212] text-white">Other</option>
                         </select>
                         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/40 text-xs">▼</div>
@@ -522,11 +512,11 @@ function ContactForm() {
                   </div>
                 )}
 
-                {/* Conditional Fields: Outreach (Events) */}
+                {/* Conditional Fields: Outreach */}
                 {category === "outreach" && (
-                  <div className="bg-white/[0.01] border border-white/5 p-5 rounded-xl flex flex-col gap-2">
-                    <label htmlFor="outreachInterest" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                      Outreach / Event of Interest <span className="text-[#E30A0A]">*</span>
+                  <div className="space-y-2 pt-1">
+                    <label htmlFor="outreachInterest" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                      Outreach Program <span className="text-[#B22222]">*</span>
                     </label>
                     <div className="relative">
                       <select
@@ -534,14 +524,14 @@ function ContactForm() {
                         name="outreachInterest"
                         value={formData.outreachInterest}
                         onChange={handleChange}
-                        className="w-full min-h-[48px] bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white transition-all focus:outline-none focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50 appearance-none cursor-pointer"
+                        className="w-full min-h-[50px] bg-black/40 border border-white/10 px-4 py-3 rounded-xl text-sm text-white transition-all focus:outline-none focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50 appearance-none cursor-pointer"
                       >
                         <option value="pray" className="bg-[#121212] text-white">WHEN ATHLETES PRAY (Prayer Meeting)</option>
                         <option value="aflame" className="bg-[#121212] text-white">AFLAME (Holy Ghost Meeting)</option>
                         <option value="tournament" className="bg-[#121212] text-white">Youth Football Tournament</option>
+                        <option value="clinic" className="bg-[#121212] text-white">Sportmantle Collegiate Clinics</option>
                         <option value="kaduna" className="bg-[#121212] text-white">Kaduna Outreach / Bootcamp</option>
-                        <option value="teaching" className="bg-[#121212] text-white">Weekly Discipleship Classes (Abuja)</option>
-                        <option value="other" className="bg-[#121212] text-white">Other Outreach Programs</option>
+                        <option value="other" className="bg-[#121212] text-white">Other Programs</option>
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/40 text-xs">▼</div>
                     </div>
@@ -549,9 +539,9 @@ function ContactForm() {
                 )}
 
                 {/* Message Field */}
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className="text-xs uppercase tracking-wider font-bold text-white/70">
-                    Message <span className="text-[#E30A0A]">*</span>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-xs uppercase tracking-wider font-mono text-white/70">
+                    Message <span className="text-[#B22222]">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -562,20 +552,20 @@ function ContactForm() {
                     onBlur={handleBlur}
                     placeholder={
                       category === "athlete"
-                        ? "Tell us about your sports career and why you want to grow in Christ..."
+                        ? "Tell us about your sports journey and goals..."
                         : category === "partner"
-                        ? "Tell us how you would like to support or collaborate with Sportmantle..."
-                        : "Tell us if you want to join as a participant, volunteer, or sponsor..."
+                        ? "Tell us how you would like to collaborate..."
+                        : "Tell us how you want to join or support..."
                     }
                     required
-                    className={`w-full bg-white/5 border px-4 py-3 rounded-lg text-sm text-white placeholder-white/20 transition-all focus:outline-none resize-y ${
+                    className={`w-full bg-black/40 border px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 transition-all focus:outline-none resize-y ${
                       touched.message && errors.message
-                        ? "border-[#E30A0A] focus:ring-1 focus:ring-[#E30A0A]/50"
-                        : "border-white/10 focus:border-[#E30A0A]/50 focus:ring-1 focus:ring-[#E30A0A]/50"
+                        ? "border-[#B22222] focus:ring-1 focus:ring-[#B22222]"
+                        : "border-white/10 focus:border-[#B22222] focus:ring-1 focus:ring-[#B22222]/50"
                     }`}
                   />
                   {touched.message && errors.message && (
-                    <span className="text-xs text-[#E30A0A] font-medium" role="alert">{errors.message}</span>
+                    <span className="text-xs text-[#B22222] font-mono" role="alert">{errors.message}</span>
                   )}
                 </div>
 
@@ -583,18 +573,18 @@ function ContactForm() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full min-h-[52px] bg-[#E30A0A] hover:bg-[#C20808] disabled:bg-[#E30A0A]/50 text-white font-black uppercase tracking-wider text-xs md:text-sm rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(227,10,10,0.2)] hover:shadow-[0_0_30px_rgba(227,10,10,0.55)] cursor-pointer"
+                  className="w-full min-h-[54px] bg-[#B22222] hover:bg-red-700 disabled:bg-[#B22222]/50 text-white font-mono font-bold uppercase tracking-wider text-xs md:text-sm rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(178,34,34,0.3)] hover:shadow-[0_0_30px_rgba(178,34,34,0.6)] cursor-pointer"
                 >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="size-4 animate-spin" />
-                      <span>Sending details...</span>
+                      <span>Transmitting Details...</span>
                     </>
                   ) : (
                     <>
                       <span>
-                        {category === "athlete" && "Start Discipleship Journey"}
-                        {category === "partner" && "Partner With Sportmantle"}
+                        {category === "athlete" && "Submit Discipleship Application"}
+                        {category === "partner" && "Submit Partnership Request"}
                         {category === "outreach" && "Register For Outreach"}
                       </span>
                       <ArrowRight className="size-4" />
@@ -606,46 +596,44 @@ function ContactForm() {
           </div>
         ) : (
           /* SUCCESS SCREEN */
-          <div className="max-w-2xl mx-auto text-center bg-white/[0.02] border border-white/10 p-10 md:p-16 rounded-2xl backdrop-blur-xl space-y-8 animate-fade-in">
-            <div className="size-20 bg-green-500/10 text-green-500 rounded-full border border-green-500/20 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(34,197,94,0.15)]">
-              <CheckCircle2 className="size-10" />
+          <div className="max-w-xl mx-auto text-center bg-neutral-900/60 border border-white/10 p-10 md:p-14 rounded-2xl backdrop-blur-xl space-y-6 shadow-2xl">
+            <div className="size-16 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+              <CheckCircle2 className="size-8" />
             </div>
 
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight font-display">
+            <div className="space-y-3">
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight font-display text-white">
                 Mantle Picked Up
               </h2>
-              <p className="text-white/80 text-lg">
-                Thank you for reaching out, <span className="font-bold text-[#E30A0A]">{formData.name}</span>!
+              <p className="text-white/80 text-base">
+                Thank you for reaching out, <span className="font-bold text-[#B22222]">{formData.name}</span>!
               </p>
-              <p className="text-white/50 text-sm max-w-md mx-auto leading-relaxed">
-                Your request for <span className="font-bold text-white uppercase">{category}</span> category has been received. Our team in Abuja will verify details and reach out to you via <span className="font-bold text-white">{formData.email}</span> or <span className="font-bold text-white">{formData.phone}</span> shortly.
+              <p className="text-white/50 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+                Your message regarding the <span className="font-bold text-white uppercase">{category}</span> category has been received. Our leadership team in Abuja will review your details and respond via <span className="font-bold text-white">{formData.email}</span> shortly.
               </p>
             </div>
 
-            <div className="pt-6">
+            <div className="pt-4">
               <Link href="/">
-                <button className="px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold tracking-wider text-xs uppercase rounded-xl transition-all duration-300 cursor-pointer">
-                  Go Back Home
+                <button className="px-7 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-mono text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer">
+                  Return to Home
                 </button>
               </Link>
             </div>
           </div>
         )}
       </div>
-
-      {/* Footer is rendered at page root */}
     </div>
   );
 }
 
 export default function ContactPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen bg-black">
+    <main className="flex flex-col w-full min-h-screen bg-[#0A0A0A]">
       <Suspense fallback={
-        <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center gap-4">
-          <Loader2 className="size-10 text-[#E30A0A] animate-spin" />
-          <p className="text-sm font-semibold tracking-wider uppercase text-white/50 animate-pulse">Loading Contact Form...</p>
+        <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col items-center justify-center gap-4">
+          <Loader2 className="size-10 text-[#B22222] animate-spin" />
+          <p className="text-xs font-mono font-bold tracking-widest uppercase text-white/50 animate-pulse">Loading Contact Form...</p>
         </div>
       }>
         <ContactForm />

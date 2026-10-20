@@ -36,6 +36,7 @@ export default function AboutHero() {
           alt="Sportmantle Discipleship and Mentorship on the Pitch"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-[center_35%] scale-105"
         />
         {/* Balanced subtle gradient overlays for crisp image visibility and text readability */}

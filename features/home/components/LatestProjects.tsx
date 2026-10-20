@@ -72,6 +72,8 @@ export default function LatestProjects() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                 </div>

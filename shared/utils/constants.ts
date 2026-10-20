@@ -14,8 +14,9 @@ export const ASSETS = {
 };
 
 export const CONTACT_INFO = {
-  EMAIL: "info@sportmantle.org",
-  PHONE: "+234 (0) 80 0000 0000",
+  EMAIL: "info@sportmantle.com",
+  PHONE: "0704 284 4943",
+  PHONE_TEL: "+2347042844943",
   ADDRESS: "Abuja, FCT, Nigeria",
   SOCIALS: {
     INSTAGRAM: "https://www.instagram.com/sportmantle/",

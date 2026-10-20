@@ -34,6 +34,8 @@ export default function Footer() {
               <img
                 src="/brand/sportmantle logo 2 [Vectorized].svg"
                 alt="Sportmantle Logo"
+                width={240}
+                height={80}
                 className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>

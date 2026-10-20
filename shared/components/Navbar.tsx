@@ -43,6 +43,8 @@ export default function Navbar() {
               <img
                 src="/brand/sportmantle logo 2 [Vectorized].svg"
                 alt="Sportmantle Logo"
+                width={180}
+                height={48}
                 className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
@@ -85,6 +87,8 @@ export default function Navbar() {
             <img
               src="/brand/sportmantle logo 2 [Vectorized].svg"
               alt="Sportmantle Logo"
+              width={150}
+              height={40}
               className="h-10 w-auto object-contain"
             />
           </Link>

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Calendar, MapPin, Sparkles, Users, Award, X, ShieldAlert } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, MapPin, Sparkles, Users, Award, X, ShieldAlert, ChevronDown, CheckCircle2 } from "lucide-react";
 import { Project } from "@/shared/data/projects";
 import Footer from "@/features/home/components/Footer";
 
@@ -13,8 +13,17 @@ interface ProjectDetailsClientProps {
   nextProject: Project;
 }
 
+const INITIAL_GALLERY_COUNT = 8;
+const GALLERY_STEP = 8;
+
 export default function ProjectDetailsClient({ project, nextProject }: ProjectDetailsClientProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState<number>(INITIAL_GALLERY_COUNT);
+
+  // Reset visible gallery count when navigating to a new project
+  useEffect(() => {
+    setVisibleCount(INITIAL_GALLERY_COUNT);
+  }, [project.slug]);
   
   const heroRef = useRef<HTMLDivElement>(null);
   const specsRef = useRef<HTMLDivElement>(null);
@@ -146,6 +155,7 @@ export default function ProjectDetailsClient({ project, nextProject }: ProjectDe
             alt={project.title}
             fill
             priority
+            sizes="100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/35 z-10" />
@@ -317,43 +327,92 @@ export default function ProjectDetailsClient({ project, nextProject }: ProjectDe
       </section>
 
       {/* Media Showcase (Gallery) */}
-      <section className="py-20 px-6 md:px-12 lg:px-20 max-w-[85rem] mx-auto border-t border-white/5 space-y-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-          <div className="space-y-2">
-            <span className="text-xs font-black uppercase tracking-widest text-[#E30A0A]">Captured Moments</span>
-            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-widest">
-              Project Media Gallery
-            </h2>
-          </div>
-          <span className="text-sm font-bold text-white/45">
-            Click any photo to interact & expand
-          </span>
-        </div>
+      {(() => {
+        const visibleImages = project.gallery.slice(0, visibleCount);
+        const hasMore = visibleCount < project.gallery.length;
+        const remainingCount = project.gallery.length - visibleCount;
 
-        {/* Gallery Grid */}
-        <div ref={galleryRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {project.gallery.map((img, idx) => (
-            <div
-              key={idx}
-              onClick={() => setLightboxIndex(idx)}
-              className="gallery-item relative aspect-[4/3] bg-white/5 overflow-hidden group rounded-xl border border-white/10 hover:border-white/30 cursor-pointer shadow-md transition-all duration-300"
-            >
-              <Image
-                src={img}
-                alt={`${project.title} gallery item ${idx + 1}`}
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-              />
-              {/* Blur-up/dim overlay on hover */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span className="px-5 py-2.5 text-xs font-black uppercase tracking-widest bg-white text-black rounded-full scale-90 group-hover:scale-100 transition-transform duration-300">
-                  View Fullscreen
-                </span>
+        return (
+          <section className="py-20 px-6 md:px-12 lg:px-20 max-w-[85rem] mx-auto border-t border-white/5 space-y-12">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-black uppercase tracking-widest text-[#E30A0A]">Captured Moments</span>
+                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/70">
+                    {project.gallery.length} Archival Photos
+                  </span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black uppercase tracking-widest">
+                  Project Media Gallery
+                </h2>
               </div>
+              <span className="text-xs sm:text-sm font-medium text-white/50">
+                Click any photo to interact & expand fullscreen
+              </span>
             </div>
-          ))}
-        </div>
-      </section>
+
+            {/* Gallery Grid */}
+            <div ref={galleryRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {visibleImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setLightboxIndex(idx)}
+                  className="gallery-item relative aspect-[4/3] bg-white/5 overflow-hidden group rounded-xl border border-white/10 hover:border-[#B22222]/60 cursor-pointer shadow-md transition-all duration-300"
+                >
+                  <Image
+                    src={img}
+                    alt={`${project.title} gallery item ${idx + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    loading="lazy"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Hover expansion overlay */}
+                  <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                    <span className="px-4 py-2 text-[11px] font-black uppercase tracking-wider bg-white text-black rounded-full scale-90 group-hover:scale-100 transition-transform duration-300 shadow-xl">
+                      Expand Photo {idx + 1}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Load More Toolbar & Progress Indicator */}
+            {project.gallery.length > INITIAL_GALLERY_COUNT && (
+              <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-white/10">
+                {/* Visual count */}
+                <div className="flex items-center gap-3 text-xs font-mono text-white/60">
+                  <span className="inline-block size-2 rounded-full bg-[#B22222] animate-pulse" />
+                  <span>
+                    Displaying <strong className="text-white">{visibleImages.length}</strong> of{" "}
+                    <strong className="text-white">{project.gallery.length}</strong> archival photos
+                  </span>
+                </div>
+
+                {/* Action Button */}
+                {hasMore ? (
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount((prev) => Math.min(prev + GALLERY_STEP, project.gallery.length))}
+                    className="group relative inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-white/[0.04] hover:bg-[#B22222] border border-white/15 hover:border-[#B22222] text-sm font-bold tracking-wide text-white transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(178,34,34,0.4)] active:scale-95 cursor-pointer"
+                  >
+                    <span>Load More Images</span>
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/10 group-hover:bg-white/25 font-mono font-bold">
+                      +{Math.min(GALLERY_STEP, remainingCount)}
+                    </span>
+                    <ChevronDown className="size-4 group-hover:translate-y-0.5 transition-transform" />
+                  </button>
+                ) : (
+                  <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/50 bg-white/[0.02] border border-white/10 px-5 py-2.5 rounded-full">
+                    <CheckCircle2 className="size-4 text-[#B22222]" />
+                    All {project.gallery.length} Archival Photos Loaded
+                  </div>
+                )}
+              </div>
+            )}
+          </section>
+        );
+      })()}
 
       {/* Interactive Lightbox Slider */}
       {lightboxIndex !== null && (
@@ -380,6 +439,8 @@ export default function ProjectDetailsClient({ project, nextProject }: ProjectDe
               src={project.gallery[lightboxIndex]}
               alt={`${project.title} lightbox slide`}
               fill
+              sizes="(max-width: 768px) 90vw, 80vw"
+              priority
               className="object-contain"
             />
           </div>
@@ -409,6 +470,8 @@ export default function ProjectDetailsClient({ project, nextProject }: ProjectDe
             src={nextProject.image}
             alt={nextProject.title}
             fill
+            sizes="100vw"
+            loading="lazy"
             className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/85 group-hover:bg-black/80 transition-colors duration-500 z-10" />

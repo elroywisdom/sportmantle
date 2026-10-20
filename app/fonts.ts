@@ -91,4 +91,5 @@ export const fontLato = localFont({
     },
   ],
   variable: "--font-lato",
+  display: "swap",
 });
