@@ -42,17 +42,7 @@ export default function FoundersMessage() {
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
-                
-                {/* Image Overlay Label */}
-                <div className="absolute bottom-6 left-6 right-6 p-4 bg-black/75 backdrop-blur-md border border-white/10 rounded-sm">
-                  <p className="text-white font-bold text-lg font-display uppercase tracking-wide">
-                    Joshua Paul Dandaldi
-                  </p>
-                  <p className="text-[#E30A0A] text-xs font-semibold uppercase tracking-wider">
-                    Founder &amp; Lead Visionary, SportMantle
-                  </p>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </div>
 
               {/* Secondary Floating Moment: In-Person Prayer / Ministry */}
