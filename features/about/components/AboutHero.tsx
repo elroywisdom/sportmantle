@@ -32,15 +32,15 @@ export default function AboutHero() {
       {/* Background Cinematic Photo with Multi-Stage Vignette */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-53.jpg"
-          alt="Sportmantle Athletes and Mentors"
+          src="/Images/projects/sportmantle-2025/SPORTMANTLE JUNIOR TOURNAMENT /IMG_6861.webp"
+          alt="Sportmantle Discipleship and Mentorship on the Pitch"
           fill
           priority
-          className="object-cover object-center scale-105"
+          className="object-cover object-[center_35%] scale-105"
         />
         {/* Balanced subtle gradient overlays for crisp image visibility and text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/80 via-[#0A0A0A]/35 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/35 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/75 via-[#0A0A0A]/30 to-transparent z-10" />
         <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[#E30A0A]/10 rounded-full blur-[140px] pointer-events-none z-10" />
       </div>
 
