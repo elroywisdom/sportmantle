@@ -8,7 +8,7 @@ const pillars = [
     title: "Gospel Discipleship",
     description:
       "Discipling athletes in the gospel of Jesus Christ, establishing an unshakeable spiritual foundation anchored in grace.",
-    image: "/Images/projects/website-placeholder images-section/athlete-praying.jpeg",
+    image: "/Images/motion-images/close-image-of-founder-with-players.webp",
     className: "md:col-span-2 lg:col-span-2",
   },
   {
@@ -16,7 +16,7 @@ const pillars = [
     title: "Divine Identity",
     description:
       "Equipping athletes with the precise knowledge of God, helping them discover their identity, call, and purpose on earth.",
-    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-37.jpg",
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-89.jpg",
     className: "md:col-span-1 lg:col-span-1",
   },
   {
@@ -77,7 +77,7 @@ export default function ValuesGrid() {
                   fill
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/45 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/25 z-10" />
                 <div className="absolute inset-0 bg-[#E30A0A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               </div>
 
