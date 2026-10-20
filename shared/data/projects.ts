@@ -138,8 +138,7 @@ export const allProjects: Project[] = [
     details: {
       location: "Bible Guest House, Zone 5, Wuse, Abuja",
       attendance: "70+ Dedicated Athletes",
-      impact: "A robust intercessory network established; deep spiritual renewals recorded among Abuja-based competitors.",
-      partners: "Abuja Sports Chapels"
+      impact: "A robust intercessory network established; deep spiritual renewals recorded among Abuja-based competitors."
     },
     titleColor: "text-white"
   },

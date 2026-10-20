@@ -206,7 +206,10 @@ export default function ProjectDetailsClient({ project, nextProject }: ProjectDe
           Project Quick Specs
         </h2>
 
-        <div ref={specsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          ref={specsRef} 
+          className={`grid grid-cols-1 sm:grid-cols-2 ${project.details.partners ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-6`}
+        >
           {/* Grid Item 1: Location */}
           <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 flex flex-col justify-between group hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
             <div className="flex justify-between items-start pb-6">
