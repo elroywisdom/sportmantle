@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
 
 const pillars = [
   {
@@ -10,7 +9,6 @@ const pillars = [
     description:
       "Discipling athletes in the gospel of Jesus Christ, establishing an unshakeable spiritual foundation anchored in grace.",
     image: "/Images/projects/website-placeholder images-section/athlete-praying.jpeg",
-    tag: "Spiritual Foundation",
     className: "md:col-span-2 lg:col-span-2",
   },
   {
@@ -19,7 +17,6 @@ const pillars = [
     description:
       "Equipping athletes with the precise knowledge of God, helping them discover their identity, call, and purpose on earth.",
     image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-37.jpg",
-    tag: "Purpose & Calling",
     className: "md:col-span-1 lg:col-span-1",
   },
   {
@@ -28,7 +25,6 @@ const pillars = [
     description:
       "Establishing righteousness in the hearts of men through deep scriptural teachings, spiritual alignment, and ethical growth.",
     image: "/Images/projects/sportmantle-2025/2nd Anniversary- Spiritual - the righteousness of God/IMG_0138.webp",
-    tag: "Truth & Righteousness",
     className: "md:col-span-1 lg:col-span-1",
   },
   {
@@ -37,7 +33,6 @@ const pillars = [
     description:
       "Building a stellar educational and physical training system for global transformation, mentorship, and excellence in sports.",
     image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-61.jpg",
-    tag: "Athletic Brilliance",
     className: "md:col-span-1 lg:col-span-1",
   },
   {
@@ -46,28 +41,24 @@ const pillars = [
     description:
       "Setting athletes free from addictions, emotional bondage, and spiritual holds through the power of deliverance.",
     image: "/Images/projects/sportmantle-2024/WHEN ATHLETES PRAY 2.0/IMG_0461.webp",
-    tag: "Deliverance & Grace",
     className: "md:col-span-2 lg:col-span-1",
   },
 ];
 
 export default function ValuesGrid() {
   return (
-    <section className="py-28 px-6 md:px-12 lg:px-20 bg-[#0A0A0A] text-white border-t border-white/5">
-      <div className="max-w-[85rem] mx-auto space-y-16">
+    <section className="py-24 px-6 md:px-12 lg:px-20 bg-[#0A0A0A] text-white border-t border-white/5">
+      <div className="max-w-[85rem] mx-auto space-y-14">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
-          <div className="space-y-3">
-            <span className="text-xs font-black uppercase tracking-[0.3em] text-[#E30A0A] flex items-center gap-2">
-              <Sparkles className="size-3.5" /> Core Discipleship Framework
-            </span>
-            <h2 className="text-[3rem] sm:text-[4.5rem] md:text-[6rem] font-black uppercase tracking-tighter leading-[0.85] scale-y-[1.1] origin-bottom font-display">
+          <div>
+            <h2 className="text-[3.2rem] sm:text-[4.5rem] md:text-[6rem] font-black uppercase tracking-tighter leading-[0.85] scale-y-[1.1] origin-bottom font-display text-white">
               The Five <span className="text-[#E30A0A] italic">Pillars</span>
             </h2>
           </div>
-          <p className="text-white/60 text-sm md:text-base max-w-md font-light leading-relaxed">
-            Every clinic, tournament, and prayer meeting is anchored in these five transformational commitments.
+          <p className="text-white/60 text-base md:text-lg max-w-md font-light leading-relaxed">
+            Every clinic, tournament, and corporate gathering is anchored in these five transformational commitments.
           </p>
         </div>
 
@@ -76,7 +67,7 @@ export default function ValuesGrid() {
           {pillars.map((pillar) => (
             <div
               key={pillar.title}
-              className={`group relative overflow-hidden rounded-sm border border-white/10 min-h-[380px] p-8 flex flex-col justify-between transition-all duration-500 hover:border-[#E30A0A]/60 hover:-translate-y-1.5 ${pillar.className}`}
+              className={`group relative overflow-hidden rounded-sm border border-white/10 min-h-[360px] p-8 flex flex-col justify-between transition-all duration-500 hover:border-[#E30A0A]/60 hover:-translate-y-1.5 ${pillar.className}`}
             >
               {/* Background Photography with Heavy Dark Gradient Overlay */}
               <div className="absolute inset-0 z-0">
@@ -90,12 +81,9 @@ export default function ValuesGrid() {
                 <div className="absolute inset-0 bg-[#E30A0A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               </div>
 
-              {/* Card Top: Number & Tag */}
-              <div className="relative z-20 flex items-center justify-between">
-                <span className="text-xs font-black uppercase tracking-widest px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white/90">
-                  {pillar.tag}
-                </span>
-                <span className="text-5xl md:text-6xl font-black font-display text-white/15 group-hover:text-[#E30A0A]/40 transition-colors">
+              {/* Card Top: Number */}
+              <div className="relative z-20 flex items-center justify-end">
+                <span className="text-5xl md:text-6xl font-black font-display text-white/20 group-hover:text-[#E30A0A]/50 transition-colors">
                   {pillar.number}
                 </span>
               </div>

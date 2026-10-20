@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fontAloevera, fontLato } from "./fonts";
+import { fontBricolage, fontLato } from "./fonts";
 import "./globals.css";
 import Navbar from "@/shared/components/Navbar";
 import SmoothScroll from "@/shared/components/SmoothScroll";
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${fontAloevera.variable} ${fontLato.variable} antialiased`}>
+    <html lang="en" className={`dark ${fontBricolage.variable} ${fontLato.variable} antialiased`}>
       <body
         className="selection:bg-primary selection:text-primary-foreground font-body"
       >

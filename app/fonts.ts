@@ -1,54 +1,40 @@
 import localFont from "next/font/local";
 
-export const fontAloevera = localFont({
+export const fontBricolage = localFont({
   src: [
     {
-      path: "../public/fonts/aloevera/AloeveraDisplay-Thin.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/aloevera/AloeveraDisplay-ExtraLight.ttf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/aloevera/AloeveraDisplay-Light.ttf",
+      path: "../public/fonts/bricolage-grotesque/BricolageGrotesque-Light.ttf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../public/fonts/aloevera/AloeveraDisplay-Regular.ttf",
+      path: "../public/fonts/bricolage-grotesque/BricolageGrotesque-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/aloevera/AloeveraDisplay-Medium.ttf",
+      path: "../public/fonts/bricolage-grotesque/BricolageGrotesque-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/aloevera/AloeveraDisplay-SemiBold.ttf",
+      path: "../public/fonts/bricolage-grotesque/BricolageGrotesque-SemiBold.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../public/fonts/aloevera/AloeveraDisplay-Bold.ttf",
+      path: "../public/fonts/bricolage-grotesque/BricolageGrotesque-Bold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../public/fonts/aloevera/AloeveraDisplay-ExtraBold.ttf",
+      path: "../public/fonts/bricolage-grotesque/BricolageGrotesque-ExtraBold.ttf",
       weight: "800",
       style: "normal",
     },
-    {
-      path: "../public/fonts/aloevera/AloeveraDisplay-Black.ttf",
-      weight: "900",
-      style: "normal",
-    },
   ],
-  variable: "--font-aloevera",
+  variable: "--font-bricolage",
+  display: "swap",
 });
 
 export const fontLato = localFont({
