@@ -1,79 +1,118 @@
 "use client";
 
-import { Shield, Zap, Target, Heart, Anchor, Waves } from "lucide-react";
+import Image from "next/image";
+import { Sparkles } from "lucide-react";
 
-const values = [
+const pillars = [
   {
-    title: "Discipleship",
-    description: "Discipling athletes in the gospel of Jesus Christ and their divine identity.",
-    icon: Anchor,
-    className: "bg-grit-gray lg:col-span-2",
-    number: "01"
+    number: "01",
+    title: "Gospel Discipleship",
+    description:
+      "Discipling athletes in the gospel of Jesus Christ, establishing an unshakeable spiritual foundation anchored in grace.",
+    image: "/Images/projects/website-placeholder images-section/athlete-praying.jpeg",
+    tag: "Spiritual Foundation",
+    className: "md:col-span-2 lg:col-span-2",
   },
   {
-    title: "Empowerment",
-    description: "Equipping athletes with knowledge of God and their purpose on earth.",
-    icon: Shield,
-    className: "bg-primary text-white",
-    number: "02"
+    number: "02",
+    title: "Divine Identity",
+    description:
+      "Equipping athletes with the precise knowledge of God, helping them discover their identity, call, and purpose on earth.",
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-37.jpg",
+    tag: "Purpose & Calling",
+    className: "md:col-span-1 lg:col-span-1",
   },
   {
-    title: "Transformation",
-    description: "Building stellar educational systems for growth in every nation.",
-    icon: Target,
-    className: "bg-asphalt lg:row-span-2",
-    number: "03"
+    number: "03",
+    title: "Scriptural Teachings",
+    description:
+      "Establishing righteousness in the hearts of men through deep scriptural teachings, spiritual alignment, and ethical growth.",
+    image: "/Images/projects/sportmantle-2025/2nd Anniversary- Spiritual - the righteousness of God/IMG_0138.webp",
+    tag: "Truth & Righteousness",
+    className: "md:col-span-1 lg:col-span-1",
   },
   {
-    title: "Righteousness",
-    description: "Establishing righteousness in the hearts of men through teachings.",
-    icon: Zap,
-    className: "bg-grit-gray",
-    number: "04"
+    number: "04",
+    title: "Stellar Training",
+    description:
+      "Building a stellar educational and physical training system for global transformation, mentorship, and excellence in sports.",
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-61.jpg",
+    tag: "Athletic Brilliance",
+    className: "md:col-span-1 lg:col-span-1",
   },
   {
-    title: "Deliverance",
-    description: "Setting athletes free from addictions, bondage, and demonic holds.",
-    icon: Waves,
-    className: "bg-primary text-white lg:col-span-2",
-    number: "05"
+    number: "05",
+    title: "Supernatural Freedom",
+    description:
+      "Setting athletes free from addictions, emotional bondage, and spiritual holds through the power of deliverance.",
+    image: "/Images/projects/sportmantle-2024/WHEN ATHLETES PRAY 2.0/IMG_0461.webp",
+    tag: "Deliverance & Grace",
+    className: "md:col-span-2 lg:col-span-1",
   },
 ];
 
 export default function ValuesGrid() {
   return (
-    <section className="py-32 px-6 bg-black">
-      <div className="max-w-7xl mx-auto space-y-16">
-        <div className="space-y-4">
-           <h4 className="text-primary text-sm font-black uppercase tracking-[0.3em]">The Core</h4>
-           <h2 className="text-5xl md:text-8xl font-black uppercase leading-none tracking-tighter">
-             OUR <span className="text-primary">VALUES</span>
-           </h2>
+    <section className="py-28 px-6 md:px-12 lg:px-20 bg-[#0A0A0A] text-white border-t border-white/5">
+      <div className="max-w-[85rem] mx-auto space-y-16">
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+          <div className="space-y-3">
+            <span className="text-xs font-black uppercase tracking-[0.3em] text-[#E30A0A] flex items-center gap-2">
+              <Sparkles className="size-3.5" /> Core Discipleship Framework
+            </span>
+            <h2 className="text-[3rem] sm:text-[4.5rem] md:text-[6rem] font-black uppercase tracking-tighter leading-[0.85] scale-y-[1.1] origin-bottom font-display">
+              The Five <span className="text-[#E30A0A] italic">Pillars</span>
+            </h2>
+          </div>
+          <p className="text-white/60 text-sm md:text-base max-w-md font-light leading-relaxed">
+            Every clinic, tournament, and prayer meeting is anchored in these five transformational commitments.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {values.map((v) => (
+        {/* Bento Grid with Image Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pillars.map((pillar) => (
             <div
-              key={v.title}
-              className={`relative overflow-hidden p-12 flex flex-col justify-between border border-white/5 transition-all hover:border-primary/50 group ${v.className}`}
+              key={pillar.title}
+              className={`group relative overflow-hidden rounded-sm border border-white/10 min-h-[380px] p-8 flex flex-col justify-between transition-all duration-500 hover:border-[#E30A0A]/60 hover:-translate-y-1.5 ${pillar.className}`}
             >
-              <div className="absolute top-8 right-8 text-6xl font-black opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
-                 {v.number}
-              </div>
-              
-              <div className={`size-14 flex items-center justify-center mb-12 ${v.className.includes('bg-primary') ? 'bg-white text-primary' : 'bg-primary/10 text-primary'}`}>
-                 <v.icon className="size-8" />
+              {/* Background Photography with Heavy Dark Gradient Overlay */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={pillar.image}
+                  alt={pillar.title}
+                  fill
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/45 z-10" />
+                <div className="absolute inset-0 bg-[#E30A0A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
               </div>
 
-              <div className="space-y-4">
-                 <h3 className="text-3xl font-black uppercase tracking-tight">{v.title}</h3>
-                 <p className={`text-lg leading-snug ${v.className.includes('bg-primary') ? 'text-white/80' : 'text-muted-foreground'}`}>
-                   {v.description}
-                 </p>
+              {/* Card Top: Number & Tag */}
+              <div className="relative z-20 flex items-center justify-between">
+                <span className="text-xs font-black uppercase tracking-widest px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-full text-white/90">
+                  {pillar.tag}
+                </span>
+                <span className="text-5xl md:text-6xl font-black font-display text-white/15 group-hover:text-[#E30A0A]/40 transition-colors">
+                  {pillar.number}
+                </span>
+              </div>
+
+              {/* Card Bottom: Title & Exact Description */}
+              <div className="relative z-20 space-y-3 pt-12">
+                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight font-display text-white group-hover:text-[#E30A0A] transition-colors">
+                  {pillar.title}
+                </h3>
+                <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+                  {pillar.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
