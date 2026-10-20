@@ -50,6 +50,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-asphalt: #0A0A0A;
+  --color-pure-white: #FFFFFF;
+  --color-sport-red: #B22222;
+  --color-grit-gray: #262626;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-header: var(--font-aloevera);

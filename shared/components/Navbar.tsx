@@ -28,10 +28,10 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 py-5",
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 px-6",
         isScrolled
-          ? "bg-asphalt/95 backdrop-blur-xl border-b border-white/5 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
-          : "bg-asphalt border-b border-transparent"
+          ? "bg-asphalt/95 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
+          : "bg-asphalt/90 md:bg-asphalt/80 backdrop-blur-md border-b border-white/5 py-5"
       )}
     >
       <div className="max-w-7xl mx-auto w-full">
@@ -50,16 +50,16 @@ export default function Navbar() {
 
           {/* Navigation Links (Column 2) - Centered */}
           <div className="flex justify-center">
-            <ul className="flex items-center gap-10 text-sm font-medium text-pure-white/90">
+            <ul className="flex items-center gap-10 text-sm font-semibold text-white">
               {navLinks.map((link) => (
                 <li key={link.name} className="relative group py-2">
                   <Link
                     href={link.href}
-                    className="hover:text-primary transition-colors duration-300 relative text-[15px] tracking-wide"
+                    className="hover:text-[#E30A0A] transition-colors duration-300 relative text-[15px] tracking-wide text-white/90 group-hover:text-white"
                   >
                     {link.name}
                     {/* Sliding underline indicator */}
-                    <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                    <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-[#E30A0A] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
                   </Link>
                 </li>
               ))}
