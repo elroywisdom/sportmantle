@@ -23,6 +23,34 @@ export interface Project {
 export const allProjects: Project[] = [
   {
     id: 1,
+    slug: "sportmantle-clinic-bingham-university",
+    title: "Sportmantle Clinic — Bingham University",
+    date: "03.14.26",
+    year: "2026",
+    category: "Camps",
+    tags: ["Clinic", "Bingham", "Mentorship", "Discipleship"],
+    image: "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-53.jpg",
+    gallery: [
+      "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-53.jpg",
+      "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-61.jpg",
+      "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-71.jpg",
+      "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-final/SMC-89.jpg",
+      "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-101.jpg",
+      "/Images/projects/2026/Sportmantle Clinic - BIgham University/smc-white-pictures/OGB-37.jpg"
+    ],
+    description: "Bingham University became the grounds of an extraordinary convergence of faith, sport, and community as SportMantle hosted its highly anticipated clinic, transforming athletic spaces into arenas of purpose.",
+    fullStory: "Bingham University is set to become the grounds of an extraordinary convergence of faith, sport, and community this weekend, as SportMantle, the faith-based sports organisation known for transforming athletic spaces into arenas of purpose, confirms its highly anticipated clinic will commence in just two days’ time. Officials from the organisation confirmed that preparations are well underway and that attendees can expect a full and varied programme from the moment the doors open.\n\nThe clinic brought together collegiate athletes, coaches, and sports leaders for an immersive encounter that seamlessly blended high-caliber athletic training with intentional spiritual mentorship. On the field, players participated in advanced technical skill drills, tactical awareness sessions, and high-intensity game simulations led by experienced coaches.\n\nOff the field, the atmosphere shifted to an altar of purpose. Sessions included character workshops, discipleship circles, and fervent prayer, empowering student-athletes to view their sports platforms as instruments for righteousness and justice in their universities and beyond.",
+    featuredQuote: "Transforming athletic spaces into arenas of purpose, where competitive excellence meets spiritual depth.",
+    details: {
+      location: "Bingham University, Karu, Nasarawa State",
+      attendance: "150+ Collegiate Athletes & Students",
+      impact: "Comprehensive football training, character empowerment, and established campus fellowship for student-athletes.",
+      partners: "Bingham University Sports Management"
+    },
+    titleColor: "text-white"
+  },
+  {
+    id: 2,
     slug: "when-athletes-pray-2nd-edition",
     title: "WHEN ATHLETES PRAY — 2nd Edition",
     date: "07.20.24",
@@ -48,7 +76,7 @@ export const allProjects: Project[] = [
     titleColor: "text-white"
   },
   {
-    id: 2,
+    id: 3,
     slug: "outreach-horvel-prime-football-academy",
     title: "Outreach — Horvel-Prime Football Academy",
     date: "03.10.25",
@@ -74,7 +102,7 @@ export const allProjects: Project[] = [
     titleColor: "text-white"
   },
   {
-    id: 3,
+    id: 4,
     slug: "aflame-holy-ghost-meeting",
     title: "AFLAME — Holy Ghost Meeting",
     date: "10.24.24",
@@ -100,7 +128,7 @@ export const allProjects: Project[] = [
     titleColor: "text-[#E30A0A]"
   },
   {
-    id: 4,
+    id: 5,
     slug: "sportmantle-7-a-side-youth-tournament",
     title: "Sportmantle 7-a-Side Youth Tournament",
     date: "06.12.25",
@@ -120,13 +148,13 @@ export const allProjects: Project[] = [
     details: {
       location: "Karu, Nasarawa State",
       attendance: "12+ Academies, 150+ Players",
-      impact: "Nurtured character and integrity in competition; distributed scriptures and resources to all participating clubs.",
+      impact: "Nurturted character and integrity in competition; distributed scriptures and resources to all participating clubs.",
       partners: "Karu Football Academy (KFA)"
     },
     titleColor: "text-white"
   },
   {
-    id: 5,
+    id: 6,
     slug: "when-athletes-pray-1st-edition",
     title: "WHEN ATHLETES PRAY — 1st Edition",
     date: "02.05.24",
@@ -151,7 +179,7 @@ export const allProjects: Project[] = [
     titleColor: "text-white"
   },
   {
-    id: 6,
+    id: 7,
     slug: "karu-football-academy-outreach",
     title: "Karu Football Academy Outreach",
     date: "11.22.24",
@@ -177,7 +205,7 @@ export const allProjects: Project[] = [
     titleColor: "text-[#E30A0A]"
   },
   {
-    id: 7,
+    id: 8,
     slug: "spirituals-righteousness-of-god",
     title: "SPIRITUALS — The Righteousness of God",
     date: "03.25.25",
@@ -204,7 +232,7 @@ export const allProjects: Project[] = [
     titleColor: "text-white"
   },
   {
-    id: 8,
+    id: 9,
     slug: "kaduna-outreach-beta-boys",
     title: "Kaduna Outreach (with Beta Boys Project)",
     date: "09.15.25",

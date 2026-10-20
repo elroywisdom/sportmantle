@@ -9,7 +9,7 @@ import { allProjects } from "@/shared/data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const filters = ["All", "2024", "2025", "Prayer", "Outreach", "Camps", "Conference", "Tournament"];
+const filters = ["All", "2026", "2025", "2024", "Prayer", "Outreach", "Camps", "Conference", "Tournament"];
 
 export default function ProjectsGrid() {
   const [activeFilter, setActiveFilter] = useState("All");
