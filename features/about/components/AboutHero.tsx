@@ -38,16 +38,16 @@ export default function AboutHero() {
           priority
           className="object-cover object-center scale-105"
         />
-        {/* Layered gradients for text clarity & atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/85 to-black/60 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent z-10" />
+        {/* Balanced subtle gradient overlays for crisp image visibility and text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/80 via-[#0A0A0A]/35 to-transparent z-10" />
         <div className="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[#E30A0A]/10 rounded-full blur-[140px] pointer-events-none z-10" />
       </div>
 
       {/* Content Container */}
       <div className="relative z-20 max-w-[85rem] w-full mx-auto space-y-10">
         {/* Master Headline */}
-        <div className="hero-anim space-y-4">
+        <div className="hero-anim space-y-4 drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
           <h1 className="text-[3.8rem] sm:text-[5.5rem] md:text-[7.5rem] lg:text-[9.5rem] font-black uppercase tracking-tighter leading-[0.8] scale-y-[1.1] origin-bottom font-display text-white">
             Raising A <br />
             <span className="text-[#E30A0A] italic">People</span> For God
@@ -58,7 +58,7 @@ export default function AboutHero() {
         </div>
 
         {/* The Mandate Box */}
-        <div className="hero-anim max-w-3xl bg-white/[0.03] border-l-4 border-[#E30A0A] border-y border-r border-white/10 p-6 md:p-8 backdrop-blur-xl">
+        <div className="hero-anim max-w-3xl bg-black/40 border-l-4 border-[#E30A0A] border-y border-r border-white/10 p-6 md:p-8 backdrop-blur-xl shadow-2xl">
           <blockquote className="text-lg md:text-2xl text-white font-medium leading-relaxed italic">
             &ldquo;Raise me a people in the sports industry, who will uphold righteousness and justice, through the route of discipleship.&rdquo;
           </blockquote>
