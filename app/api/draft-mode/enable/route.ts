@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   }
 
   if (type === "news") {
-    redirect(`/news-insights/${slug}`);
+    redirect(`/news/${slug}`);
   }
 
   // Default to projects

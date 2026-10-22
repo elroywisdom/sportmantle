@@ -10,6 +10,7 @@ const footerLinks = [
       { name: "Our Mandate", href: "/about#mandate" },
       { name: "Impact Reports", href: "/impact" },
       { name: "Global Outreach", href: "/projects" },
+      { name: "News & Insights", href: "/news" },
     ],
   },
   {
