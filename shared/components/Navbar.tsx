@@ -11,7 +11,6 @@ const navLinks = [
   { name: "Projects", href: "/projects" },
   { name: "Impact", href: "/impact" },
   { name: "News & Insights", href: "/news" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
