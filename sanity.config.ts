@@ -48,7 +48,7 @@ const PAGE_SINGLETONS = [
 export default defineConfig({
   name: "default",
   title: "Sportmantle Content Studio",
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "67gkfdi6",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   basePath: "/studio",
   theme: brandTheme,
