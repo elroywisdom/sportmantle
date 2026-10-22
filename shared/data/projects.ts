@@ -1,5 +1,5 @@
 export interface Project {
-  id: number;
+  id: number | string;
   slug: string;
   title: string;
   date: string;
@@ -18,6 +18,7 @@ export interface Project {
     partners?: string;
   };
   titleColor: string;
+  contentSections?: any[];
 }
 
 export const allProjects: Project[] = [

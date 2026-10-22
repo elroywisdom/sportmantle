@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { fontBricolage, fontLato } from "./fonts";
 import "./globals.css";
-import Navbar from "@/shared/components/Navbar";
-import SmoothScroll from "@/shared/components/SmoothScroll";
+import SiteShell from "@/components/SiteShell";
 
 export const metadata: Metadata = {
   title: "Sportmantle | Sports for Christ",
@@ -16,14 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${fontBricolage.variable} ${fontLato.variable} antialiased`}>
-      <body
-        className="selection:bg-primary selection:text-primary-foreground font-body"
-      >
-        <div className="noise-overlay" />
-        <Navbar />
-        <SmoothScroll>
+      <body className="selection:bg-primary selection:text-primary-foreground font-body">
+        <SiteShell>
           {children}
-        </SmoothScroll>
+        </SiteShell>
       </body>
     </html>
   );

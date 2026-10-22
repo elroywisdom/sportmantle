@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, MapPin, Sparkles, Users, Award, X, ShieldAlert, ChevronDown, CheckCircle2 } from "lucide-react";
 import { Project } from "@/shared/data/projects";
 import Footer from "@/features/home/components/Footer";
+import { SectionRenderer } from "@/shared/components/ui/section-renderer";
 
 interface ProjectDetailsClientProps {
   project: Project;
@@ -328,6 +329,15 @@ export default function ProjectDetailsClient({ project, nextProject }: ProjectDe
           </div>
         )}
       </section>
+
+      {/* Modular Content Sections from CMS (if any) */}
+      {project.contentSections && project.contentSections.length > 0 && (
+        <section className="py-12 border-t border-white/5 max-w-[85rem] mx-auto px-6 md:px-12 lg:px-20">
+          {project.contentSections.map((section: any, idx: number) => (
+            <SectionRenderer key={section._key || idx} section={section} />
+          ))}
+        </section>
+      )}
 
       {/* Media Showcase (Gallery) */}
       {(() => {
